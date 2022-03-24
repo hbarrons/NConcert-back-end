@@ -1,8 +1,32 @@
 import mongoose from 'mongoose'
 
+const genreSchema = new mongoose.Schema({
+  genre: {type: String} ,
+}, {
+  timestamps: true
+})
+
+const artistSchema = new mongoose.Schema({
+  artist: {type: String} ,
+}, {
+  timestamps: true
+})
+
+const friendsSchema = new mongoose.Schema({
+  name: {type: String},
+  avatar: {type: String},
+}, {
+  timestamps: true
+})
+
 const profileSchema = new mongoose.Schema({
-  email: {type: String, required: true, lowercase: true, unique: true},
-  name: String,
+  name: {type: String}, 
+  avatar: {type: String},
+  bio: {type: String}, 
+  spotifyLink: {type: String},
+  genreSchema: [genreSchema],
+  artistEpisode: [artistSchema],
+  friends: [friendsSchema]
 },{
     timestamps: true,
 })
