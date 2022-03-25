@@ -9,15 +9,29 @@ const apiKey = `${process.env.API_KEY}`
 //back end is not returning any info -- why?
 
 function getEvents(req,res){
-  console.log("baseUrl: ", baseUrl)
-  console.log("apiKey: ", apiKey)
-  console.log("full api fetch: ", `${baseUrl}/events.json?countryCode=US${apiKey}`)
+  // if (req.params.page)
   axios.get(`${baseUrl}/events.json?countryCode=US${apiKey}`)
   .then(response => {
     res.json(response.data._embedded.events)
   })
 }
 
+function getLinks(req,res){
+  axios.get(`${baseUrl}/events.json?countryCode=US${apiKey}`)
+  .then(response => {
+    res.json(response.data)
+  })
+}
+
+// function searchEvents (req,res){
+//   axios.get(`${baseUrl}/events.json?countryCode=US${city}${keyword}${apiKey}`)
+//   .then(response => {
+//     res.json(response.data._embedded.events)
+//   })
+// }
+
+
 export {
   getEvents,
+  getLinks
 }
