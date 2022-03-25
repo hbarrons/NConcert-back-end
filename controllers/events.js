@@ -1,19 +1,23 @@
-import { Event } from "../models/event";
+// import { Event } from "../models/event";
+// import jwt from 'jsonwebtoken'
+// import fetch from "node-fetch"
+import axios from "axios"
 
-// notes from hunter: api calls are made as controller functions from the back-end
-// these controller functions are copy/pasted from the sandbox environment i tested the api calls in
+const baseUrl = "https://app.ticketmaster.com/discovery/v2"
+const apiKey = `${process.env.API_KEY}`
 
-function getEvents(){
-  return fetch(`${baseUrl}/events.json?countryCode=US${apiKey}`)
-  .then(res => res.json())
-}
+//back end is not returning any info -- why?
 
-function getEventDetails(){
-  //need to add _id for events to fetch link
-  return fetch(`${baseUrl}/events.json?`) 
+function getEvents(req,res){
+  console.log("baseUrl: ", baseUrl)
+  console.log("apiKey: ", apiKey)
+  console.log("full api fetch: ", `${baseUrl}/events.json?countryCode=US${apiKey}`)
+  axios.get(`${baseUrl}/events.json?countryCode=US${apiKey}`)
+  .then(response => {
+    res.json(response.data._embedded.events)
+  })
 }
 
 export {
   getEvents,
-  getEventDetails
 }
