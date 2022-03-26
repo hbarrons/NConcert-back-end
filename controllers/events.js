@@ -17,9 +17,12 @@ function getKeywordAndCity(req, res) {
   })
 }
 
-
+function getNextPage(req, res){
+  console.log("sanity check!!!!!");
+}
 export {
   getEvents,
   // getLinks, 
-  getKeywordAndCity
+  getKeywordAndCity,
+  getNextPage,
 }

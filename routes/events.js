@@ -11,6 +11,7 @@ router.get('/', eventsCtrl.getEvents)
 
 // searching routes 
 router.get('/search/:keyword/:city', eventsCtrl.getKeywordAndCity )
+router.get('/search/:links', eventsCtrl.getNextPage)
 
 
 // router.get('/:id', eventsCtrl.show)
