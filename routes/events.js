@@ -8,8 +8,10 @@ const router = Router()
 
 /*---------- Public Routes ----------*/
 router.get('/', eventsCtrl.getEvents)
-router.get('/', eventsCtrl.getLinks)
-// router.get('/search', eventsCtrl.searchEvents)
+
+// searching routes 
+router.get('/search/:keyword/:city', eventsCtrl.getKeywordAndCity )
+
 
 // router.get('/:id', eventsCtrl.show)
 
