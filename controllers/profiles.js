@@ -10,11 +10,11 @@ function index(req, res) {
 }
 
 function show(req,res) {
-  console.log(req.params)
+  console.log("show: sanity check")
 }
 
 function addToProfile(req,res) {
-  console.log(req.body)
+  console.log("req.body: ", req.body)
 }
 
 export {
