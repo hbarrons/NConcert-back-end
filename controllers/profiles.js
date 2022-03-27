@@ -28,8 +28,14 @@ function addToProfile(req,res) {
   })
 }
 
+function addFriend(req,res) {
+  console.log('req.body: ', req.body)
+  console.log('req.params: ', req.params)
+}
+
 export {
   index,
   show,
   addToProfile,
+  addFriend,
 }

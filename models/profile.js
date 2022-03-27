@@ -23,7 +23,10 @@ const profileSchema = new mongoose.Schema({
   name: { type: String },
   avatar: { type: String },
   email: {type: String, required: true, lowercase: true, unique: true},
-  bio: { type: String },
+  bio: {
+    type: String,
+    maxLength: 160
+  },
   spotifyLink: { type: String },
   genre: [genreSchema],
   artist: [artistSchema],
