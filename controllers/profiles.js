@@ -11,6 +11,8 @@ function index(req, res) {
 
 function show(req,res) {
   console.log("show: sanity check")
+  //not sure what/if a function needs to go here?
+  //this is being triggered, but if I remove it we get errors. Leaving for now.
 }
 
 function addToProfile(req,res) {
@@ -20,7 +22,6 @@ function addToProfile(req,res) {
     profile.genre.push({ genre: req.body.genre})
     profile.artist.push({artist: req.body.artist})
     profile.save()
-    profile => res.json(profile)
   })
   .catch(err => {
     console.log(err)
