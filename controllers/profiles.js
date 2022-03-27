@@ -1,7 +1,6 @@
 import { Profile } from '../models/profile.js'
 
 function index(req, res) {
-  console.log("api key: ", `${process.env.API_KEY}`)
   Profile.find({})
   .then(profiles => res.json(profiles))
   .catch(err => {
@@ -10,4 +9,16 @@ function index(req, res) {
   })
 }
 
-export { index }
+function show(req,res) {
+  console.log(req.params)
+}
+
+function addToProfile(req,res) {
+  console.log(req.body)
+}
+
+export {
+  index,
+  show,
+  addToProfile,
+}

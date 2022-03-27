@@ -10,6 +10,14 @@ function getEvents(req,res){
   })
 }
 
+// function getLinks(req,res){
+//   console.log("req.params: ", req.params)
+//   axios.get(`${baseUrl}/events.json?classificationName=music&countryCode=US&keyword=${req.params.keyword}&city=${req.params.city}${apiKey}`)
+//   .then(response => {
+//     res.json(response.data._embedded.events)
+//   })
+// }
+
 function getKeywordAndCity(req, res) {
   axios.get(`${baseUrl}/events.json?classificationName=music&countryCode=US&keyword=${req.params.keyword}&city=${req.params.city}${apiKey}`)
   .then(apiResponse => {
