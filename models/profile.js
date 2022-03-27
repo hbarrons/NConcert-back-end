@@ -25,8 +25,8 @@ const profileSchema = new mongoose.Schema({
   email: {type: String, required: true, lowercase: true, unique: true},
   bio: { type: String },
   spotifyLink: { type: String },
-  genreSchema: [genreSchema],
-  artistSchema: [artistSchema],
+  genre: [genreSchema],
+  artist: [artistSchema],
   friends: [friendsSchema]
 }, {
   timestamps: true,

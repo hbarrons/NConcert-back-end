@@ -11,6 +11,6 @@ const router = Router()
 router.use(decodeUserFromToken)
 router.get('/', checkAuth, profilesCtrl.index)
 router.get('/:id', profilesCtrl.show)
-router.post('/:id', profilesCtrl.addToProfile)
+router.post('/:id/create', profilesCtrl.addToProfile)
 
 export { router }
