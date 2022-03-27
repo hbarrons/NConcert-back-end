@@ -20,6 +20,7 @@ function addToProfile(req,res) {
     profile.genre.push({ genre: req.body.genre})
     profile.artist.push({artist: req.body.artist})
     profile.save()
+    profile => res.json(profile)
   })
   .catch(err => {
     console.log(err)
