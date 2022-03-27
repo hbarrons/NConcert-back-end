@@ -10,11 +10,20 @@ function index(req, res) {
 }
 
 function show(req,res) {
-  console.log(req.params)
+  console.log("show: sanity check")
 }
 
 function addToProfile(req,res) {
-  console.log(req.body)
+  Profile.findById(req.user.profile)
+  .then(profile => {
+    profile.bio = req.body.bio
+    profile.genre.push({ genre: req.body.genre})
+    profile.artist.push({artist: req.body.artist})
+    profile.save()
+  })
+  .catch(err => {
+    console.log(err)
+  })
 }
 
 export {
