@@ -17,11 +17,13 @@ function show(req,res) {
 }
 
 function addToProfile(req,res) {
+  console.log("req.body: ", req.body)
   Profile.findById(req.user.profile)
   .then(profile => {
     profile.bio = req.body.bio
     profile.genre.push({ genre: req.body.genre})
     profile.artist.push({artist: req.body.artist})
+    profile.spotify = req.body.spotify
     profile.save()
   })
   .catch(err => {
