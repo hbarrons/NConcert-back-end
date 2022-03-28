@@ -1,6 +1,7 @@
 import { Profile } from '../models/profile.js'
 
 function index(req, res) {
+  console.log(req.params)
   Profile.find({})
   .then(profiles => res.json(profiles))
   .catch(err => {
