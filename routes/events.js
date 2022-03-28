@@ -10,6 +10,7 @@ const router = Router()
 
 // searching routes 
 router.get('/search/:keyword/:city/:page', eventsCtrl.getSearch)
+router.get('/:id', eventsCtrl.show)
 
 
 /*---------- Protected Routes ----------*/

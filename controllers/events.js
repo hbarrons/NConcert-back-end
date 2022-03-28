@@ -11,7 +11,12 @@ function getSearch(req, res) {
   })
 }
 
+function show(req, res) {
+  console.log('sanity check')
+}
+
 
 export { 
   getSearch,
+  show,
 }
