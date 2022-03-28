@@ -11,13 +11,17 @@ function index(req, res) {
 }
 
 function show(req,res) {
-  console.log("show: sanity check")
-  //not sure what/if a function needs to go here?
-  //this is being triggered, but if I remove it we get errors. Leaving for now.
+  console.log("req.params: ", req.params)
+  Profile.findById(req.params.profile)
+  .then(profile => res.json(profile))
+  .catch(err => {
+    console.log(err)
+    res.status(500).json(err)
+  })
 }
 
 function addToProfile(req,res) {
-  console.log("req.body: ", req.body)
+  (console.log("req.body: ", req.body))
   Profile.findById(req.user.profile)
   .then(profile => {
     profile.bio = req.body.bio
@@ -25,6 +29,7 @@ function addToProfile(req,res) {
     profile.artist.push({artist: req.body.artist})
     profile.spotify = req.body.spotify
     profile.save()
+    console.log("profile after save: ", profile)
   })
   .catch(err => {
     console.log(err)
@@ -32,12 +37,14 @@ function addToProfile(req,res) {
 }
 
 function addFriend(req,res) {
+  console.log("add friend - req.body: ", req.params.profile)
   Profile.findById(req.user.profile)
   .then(profile => {
     profile.friends.push({
       name: req.params.name,
       profileId: req.params.profile,
       bio: req.params.bio,
+      spotify: req.body.spotify
     })
     profile.save()
     console.log("profile.friends: ", profile.friends)
