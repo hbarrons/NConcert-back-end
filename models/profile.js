@@ -14,7 +14,8 @@ const artistSchema = new mongoose.Schema({
 
 const friendsSchema = new mongoose.Schema({
   name: { type: String },
-  avatar: { type: String },
+  profileId: { type: String },
+  bio: { type: String },
 }, {
   timestamps: true
 })
