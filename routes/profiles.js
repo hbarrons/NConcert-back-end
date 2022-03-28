@@ -12,5 +12,6 @@ router.use(decodeUserFromToken)
 router.get('/', checkAuth, profilesCtrl.index)
 router.get('/:id', profilesCtrl.show)
 router.post('/:id/create', profilesCtrl.addToProfile)
+router.post('/add/:profile/:name/:bio', profilesCtrl.addFriend)
 
 export { router }

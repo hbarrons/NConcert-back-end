@@ -28,8 +28,25 @@ function addToProfile(req,res) {
   })
 }
 
+function addFriend(req,res) {
+  Profile.findById(req.user.profile)
+  .then(profile => {
+    profile.friends.push({
+      name: req.params.name,
+      profileId: req.params.profile,
+      bio: req.params.bio,
+    })
+    profile.save()
+    console.log("profile.friends: ", profile.friends)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
+
 export {
   index,
   show,
   addToProfile,
+  addFriend,
 }
