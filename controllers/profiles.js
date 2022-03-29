@@ -54,9 +54,24 @@ function addFriend(req,res) {
   })
 }
 
+function deleteFriend(req,res) {
+  console.log("add friend - req.body: ", req.params)
+  Profile.findById(req.user.profile)
+  .then(profile => {
+    profile.friends.remove({_id: req.params.profileId})
+    profile.save()
+    console.log(profile.friends)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
+
+
 export {
   index,
   show,
   addToProfile,
   addFriend,
+  deleteFriend,
 }
