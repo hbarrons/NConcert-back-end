@@ -72,8 +72,8 @@ function deleteGenre(req,res) {
   console.log("deleteGenre: ", req.params.genreId)
   Profile.findById(req.user.profile)
   .then(profile => {
-    // profile.friends.remove({_id: req.params.profileId})
-    // profile.save()
+    profile.genre.remove({_id: req.params.genreId})
+    profile.save()
     console.log("profile: ", profile.genre)
   })
   .catch(err => {
@@ -85,8 +85,8 @@ function deleteArtist(req,res) {
   console.log("deleteArtist: ", req.params.artistId)
   Profile.findById(req.user.profile)
   .then(profile => {
-    // profile.friends.remove({_id: req.params.profileId})
-    // profile.save()
+    profile.artist.remove({_id: req.params.artistId})
+    profile.save()
     console.log("profile: ", profile.artist)
   })
   .catch(err => {
