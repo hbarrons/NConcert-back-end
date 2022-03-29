@@ -56,12 +56,38 @@ function addFriend(req,res) {
 }
 
 function deleteFriend(req,res) {
-  console.log("add friend - req.body: ", req.params)
+  console.log("deleteFriend: ", req.params)
   Profile.findById(req.user.profile)
   .then(profile => {
     profile.friends.remove({_id: req.params.profileId})
     profile.save()
     console.log(profile.friends)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
+
+function deleteGenre(req,res) {
+  console.log("deleteGenre: ", req.params.genreId)
+  Profile.findById(req.user.profile)
+  .then(profile => {
+    // profile.friends.remove({_id: req.params.profileId})
+    // profile.save()
+    console.log("profile: ", profile.genre)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
+
+function deleteArtist(req,res) {
+  console.log("deleteArtist: ", req.params.artistId)
+  Profile.findById(req.user.profile)
+  .then(profile => {
+    // profile.friends.remove({_id: req.params.profileId})
+    // profile.save()
+    console.log("profile: ", profile.artist)
   })
   .catch(err => {
     console.log(err)
@@ -75,4 +101,6 @@ export {
   addToProfile,
   addFriend,
   deleteFriend,
+  deleteGenre,
+  deleteArtist,
 }
