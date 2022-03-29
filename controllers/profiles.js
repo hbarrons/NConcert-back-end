@@ -12,7 +12,7 @@ function index(req, res) {
 
 function show(req,res) {
   console.log("req.params: ", req.params)
-  Profile.findById(req.params.profile)
+  Profile.findById(req.params.id)
   .then(profile => res.json(profile))
   .catch(err => {
     console.log(err)
@@ -30,6 +30,7 @@ function addToProfile(req,res) {
     profile.spotify = req.body.spotify
     profile.save()
     console.log("profile after save: ", profile)
+    res.status(201).json(profile)
   })
   .catch(err => {
     console.log(err)
