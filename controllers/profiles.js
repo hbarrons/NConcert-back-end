@@ -94,6 +94,32 @@ function deleteArtist(req,res) {
   })
 }
 
+function addGenre (req,res) {
+  Profile.findById(req.user.profile)
+  .then(profile => {
+    profile.genre.push({genre: req.params.genre})
+    profile.save()
+    console.log("profile after save: ", profile)
+    res.status(201).json(profile)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
+
+function addArtist (req,res) {
+  Profile.findById(req.user.profile)
+  .then(profile => {
+    profile.artist.push({artist: req.params.artist})
+    profile.save()
+    console.log("profile after save: ", profile)
+    res.status(201).json(profile)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
+
 
 export {
   index,
@@ -103,4 +129,6 @@ export {
   deleteFriend,
   deleteGenre,
   deleteArtist,
+  addGenre,
+  addArtist,
 }

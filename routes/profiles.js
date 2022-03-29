@@ -18,6 +18,8 @@ router.post('/add/:profile/:name/:bio/', profilesCtrl.addFriend)
 router.delete("/delete/:profileId", profilesCtrl.deleteFriend)
 router.delete("/delete/genre/:genreId", profilesCtrl.deleteGenre)
 router.delete("/delete/artist/:artistId", profilesCtrl.deleteArtist)
+router.post('/add/genre/:genre', profilesCtrl.addGenre)
+router.post('/add/artist/:artist', profilesCtrl.addArtist)
 
 //route to send data as an object
 // router.post('/add/:profile', profilesCtrl.addFriend)
