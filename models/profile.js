@@ -20,6 +20,16 @@ const friendsSchema = new mongoose.Schema({
   timestamps: true
 })
 
+const eventsSchema = new mongoose.Schema({
+  name: { type: String },
+  eventId: { type: String },
+  city: { type: String },
+  state: { type: String },
+  time: { type: String },
+  interested: { type: Boolean },
+  attending: { type: Boolean }
+})
+
 const profileSchema = new mongoose.Schema({
   name: { type: String },
   avatar: { type: String },
