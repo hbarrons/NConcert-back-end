@@ -11,7 +11,6 @@ function index(req, res) {
 }
 
 function show(req,res) {
-  console.log("req.params: ", req.params)
   Profile.findById(req.params.id)
   .then(profile => res.json(profile))
   .catch(err => {
@@ -21,7 +20,6 @@ function show(req,res) {
 }
 
 function addToProfile(req,res) {
-  (console.log("req.body: ", req.body))
   Profile.findById(req.user.profile)
   .then(profile => {
     profile.bio = req.body.bio
@@ -29,7 +27,6 @@ function addToProfile(req,res) {
     profile.artist.push({artist: req.body.artist})
     profile.spotify = req.body.spotify
     profile.save()
-    console.log("profile after save: ", profile)
     res.status(201).json(profile)
   })
   .catch(err => {
@@ -38,7 +35,6 @@ function addToProfile(req,res) {
 }
 
 function addFriend(req,res) {
-  console.log("add friend - req.body: ", req.params.profile)
   Profile.findById(req.user.profile)
   .then(profile => {
     profile.friends.push({
@@ -48,7 +44,6 @@ function addFriend(req,res) {
       spotify: req.body.spotify
     })
     profile.save()
-    console.log("profile.friends: ", profile.friends)
   })
   .catch(err => {
     console.log(err)
@@ -56,7 +51,6 @@ function addFriend(req,res) {
 }
 
 function deleteFriend(req,res) {
-  console.log("deleteFriend: ", req.params)
   Profile.findById(req.user.profile)
   .then(profile => {
     profile.friends.remove({_id: req.params.profileId})
@@ -69,12 +63,10 @@ function deleteFriend(req,res) {
 }
 
 function deleteGenre(req,res) {
-  console.log("deleteGenre: ", req.params.genreId)
   Profile.findById(req.user.profile)
   .then(profile => {
     profile.genre.remove({_id: req.params.genreId})
     profile.save()
-    console.log("profile: ", profile.genre)
   })
   .catch(err => {
     console.log(err)
@@ -82,12 +74,10 @@ function deleteGenre(req,res) {
 }
 
 function deleteArtist(req,res) {
-  console.log("deleteArtist: ", req.params.artistId)
   Profile.findById(req.user.profile)
   .then(profile => {
     profile.artist.remove({_id: req.params.artistId})
     profile.save()
-    console.log("profile: ", profile.artist)
   })
   .catch(err => {
     console.log(err)
@@ -99,7 +89,6 @@ function addGenre (req,res) {
   .then(profile => {
     profile.genre.push({genre: req.params.genre})
     profile.save()
-    console.log("profile after save: ", profile)
     res.status(201).json(profile)
   })
   .catch(err => {
@@ -112,6 +101,19 @@ function addArtist (req,res) {
   .then(profile => {
     profile.artist.push({artist: req.params.artist})
     profile.save()
+    res.status(201).json(profile)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
+
+function updateBio (req,res) {
+  console.log("updatebio: ", req.params.bio)
+  Profile.findById(req.user.profile)
+  .then(profile => {
+    profile.bio = req.params.bio
+    profile.save()
     console.log("profile after save: ", profile)
     res.status(201).json(profile)
   })
@@ -119,6 +121,21 @@ function addArtist (req,res) {
     console.log(err)
   })
 }
+
+function updateSpotify (req,res) {
+  console.log("update spotfy: ", req.params.spotify)
+  Profile.findById(req.user.profile)
+  .then(profile => {
+    profile.spotify = req.params.spotify
+    profile.save()
+    console.log("profile after save: ", profile)
+    res.status(201).json(profile)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
+
 
 
 export {
@@ -131,4 +148,6 @@ export {
   deleteArtist,
   addGenre,
   addArtist,
+  updateBio,
+  updateSpotify,
 }
