@@ -12,6 +12,7 @@ const router = Router()
 router.get('/search/:keyword/:city/:page', eventsCtrl.getSearch)
 router.get('/:id', eventsCtrl.show)
 
+// router.post('/:id/comments', eventsCtrl.createComment)
 
 /*---------- Protected Routes ----------*/
 
