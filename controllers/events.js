@@ -15,8 +15,24 @@ function show(req, res) {
   console.log('sanity check')
 }
 
+// function createComment(req, res) {
+//   console.log(Event)
+//   Event.findById(req.params.event)
+//   .then(event => {
+//     event.comments.push({
+//       name: req.params.name,
+//       comment: req.params.comment
+//     })
+//     event.save()
+//   })
+//   .catch(err => {
+//     console.log(err)
+//   })
+// }
+
 
 export { 
   getSearch,
   show,
+  // createComment,
 }
