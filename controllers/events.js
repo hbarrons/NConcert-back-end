@@ -4,7 +4,6 @@ const baseUrl = "https://app.ticketmaster.com/discovery/v2"
 const apiKey = `${process.env.API_KEY}`
 
 function getSearch(req, res) {
-  console.log("req.params.page: ", req.params.page)
   axios.get(`${baseUrl}/events.json?classificationName=music&countryCode=US&keyword=${req.params.keyword}&city=${req.params.city}&page=${req.params.page}&size=20${apiKey}`)
   .then(apiResponse => {
     res.json(apiResponse.data)
@@ -31,12 +30,12 @@ function show(req, res) {
 // }
 
 function showUniqueEvent (req,res) {
-  console.log("req.params: ", req.params)
-  axios.get(`${baseUrl}/events.json?id=${req.params.eventId}${apiKey}`)
-  .then(eventData => {
-    console.log("eventData: ", eventData.data)
-    // res.json(eventData)
-  })
+  console.log("req.params: ", req.params.eventId)
+  // axios.get(`${baseUrl}/events.json?id=${req.params.eventId}${apiKey}`)
+  // .then(eventData => {
+  //   // console.log("eventData: ", eventData.data._embedded)
+  //   res.json(eventData.data._embedded.events)
+  // })
 }
 
 
