@@ -11,6 +11,7 @@ const router = Router()
 // searching routes 
 router.get('/search/:keyword/:city/:page', eventsCtrl.getSearch)
 router.get('/:id', eventsCtrl.show)
+router.get('/get/:eventId', eventsCtrl.showUniqueEvent)
 
 // router.post('/:id/comments', eventsCtrl.createComment)
 
