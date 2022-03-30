@@ -51,7 +51,6 @@ function showUniqueEvent (req,res) {
   })
 }
 
-
 export { 
   getSearch,
   show,

@@ -24,6 +24,7 @@ router.put('/update/bio/:bio', profilesCtrl.updateBio)
 router.put('/update/spotify/:spotify', profilesCtrl.updateSpotify)
 router.post('/:event/create/interested', profilesCtrl.addInterestedEvent)
 router.post('/:event/create/attending', profilesCtrl.addAttendingEvent)
+router.delete('/delete/event/:eventId', profilesCtrl.deleteEvent)
 
 //route to send data as an object
 // router.post('/add/:profile', profilesCtrl.addFriend)
