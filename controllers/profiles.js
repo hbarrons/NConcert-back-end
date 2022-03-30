@@ -159,7 +159,8 @@ function addInterestedEvent (req,res) {
 }
 
 function addAttendingEvent (req,res) {
-  // console.log(req.user.profile)
+  console.log("req.body._embedded.dates.start: ", req.body.dates.start.localDate)
+  console.log("req.body._embedded.dates.start: ", req.body.dates.start.localTime)
   Profile.findById(req.user.profile)
   .then(profile => {
     profile.events.push({
@@ -169,8 +170,10 @@ function addAttendingEvent (req,res) {
       venue: req.body._embedded.venues[0].name,
       city: req.body._embedded.venues[0].city.name,
       state: req.body._embedded.venues[0].state.stateCode,
+      time: req.body.dates.start.localTime,
+      date: req.body.dates.start.localDate,
       interested: true,
-      attending: true
+      attending: true,
     })
     profile.save()
     console.log(profile.events)

@@ -27,6 +27,8 @@ const eventsSchema = new mongoose.Schema({
   venue: { type: String },
   city: { type: String },
   state: { type: String },
+  time: { type: String },
+  date: { type: String },
   interested: { type: Boolean },
   attending: { type: Boolean }
 })
