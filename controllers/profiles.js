@@ -136,6 +136,50 @@ function updateSpotify (req,res) {
   })
 }
 
+function addInterestedEvent (req,res) {
+  // console.log(req.user.profile)
+  Profile.findById(req.user.profile)
+  .then(profile => {
+    profile.events.push({
+      name: req.body.name,
+      eventId: req.body.id,
+      url: req.body.url,
+      venue: req.body._embedded.venues[0].name,
+      city: req.body._embedded.venues[0].city.name,
+      state: req.body._embedded.venues[0].state.stateCode,
+      interested: true,
+      attending: false
+    })
+    profile.save()
+    console.log(profile.events)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
+
+function addAttendingEvent (req,res) {
+  // console.log(req.user.profile)
+  Profile.findById(req.user.profile)
+  .then(profile => {
+    profile.events.push({
+      name: req.body.name,
+      eventId: req.body.id,
+      url: req.body.url,
+      venue: req.body._embedded.venues[0].name,
+      city: req.body._embedded.venues[0].city.name,
+      state: req.body._embedded.venues[0].state.stateCode,
+      interested: true,
+      attending: true
+    })
+    profile.save()
+    console.log(profile.events)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
+
 
 
 export {
@@ -150,4 +194,6 @@ export {
   addArtist,
   updateBio,
   updateSpotify,
+  addInterestedEvent,
+  addAttendingEvent,
 }

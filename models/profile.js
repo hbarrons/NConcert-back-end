@@ -23,9 +23,10 @@ const friendsSchema = new mongoose.Schema({
 const eventsSchema = new mongoose.Schema({
   name: { type: String },
   eventId: { type: String },
+  url: { type: String },
+  venue: { type: String },
   city: { type: String },
   state: { type: String },
-  time: { type: String },
   interested: { type: Boolean },
   attending: { type: Boolean }
 })
@@ -41,7 +42,8 @@ const profileSchema = new mongoose.Schema({
   spotify: { type: String },
   genre: [genreSchema],
   artist: [artistSchema],
-  friends: [friendsSchema]
+  friends: [friendsSchema],
+  events: [eventsSchema],
 }, {
   timestamps: true,
 })
