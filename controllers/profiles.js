@@ -15,7 +15,7 @@ function show(req,res) {
   .then(profile => res.json(profile))
   .catch(err => {
     console.log(err)
-    // res.status(500).json(err)
+    res.status(500).json(err)
   })
 }
 
@@ -35,15 +35,16 @@ function addToProfile(req,res) {
 }
 
 function addFriend(req,res) {
+  console.log(req.body)
   Profile.findById(req.user.profile)
   .then(profile => {
+    console.log(profile)
     profile.friends.push({
-      name: req.params.name,
+      name: req.body.name,
       profileId: req.params.profile,
-      bio: req.params.bio,
-      spotify: req.body.spotify
     })
     profile.save()
+    res.status(201).json(profile.friends[profile.friends.length - 1])
   })
   .catch(err => {
     console.log(err)
