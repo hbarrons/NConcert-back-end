@@ -183,7 +183,18 @@ function addAttendingEvent (req,res) {
   })
 }
 
-
+function deleteEvent (req,res) {
+  console.log(req.params.eventId)
+  Profile.findById(req.user.profile)
+  .then(profile => {
+    profile.events.remove({_id: req.params.eventId})
+    profile.save()
+    console.log(profile.events)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
 
 export {
   index,
@@ -199,4 +210,5 @@ export {
   updateSpotify,
   addInterestedEvent,
   addAttendingEvent,
+  deleteEvent,
 }
