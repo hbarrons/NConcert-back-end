@@ -30,12 +30,13 @@ function show(req, res) {
 // }
 
 function showUniqueEvent (req,res) {
+  // const testId = 'rZ7HnEZ1AoZYAP'
   console.log("req.params: ", req.params.eventId)
-  // axios.get(`${baseUrl}/events.json?id=${req.params.eventId}${apiKey}`)
-  // .then(eventData => {
-  //   // console.log("eventData: ", eventData.data._embedded)
-  //   res.json(eventData.data._embedded.events)
-  // })
+  axios.get(`${baseUrl}/events.json?id=${req.params.eventId}${apiKey}`)
+  .then(eventData => {
+    // console.log("eventData: ", eventData.data._embedded)
+    res.json(eventData.data._embedded.events)
+  })
 }
 
 
