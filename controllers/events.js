@@ -30,9 +30,18 @@ function show(req, res) {
 //   })
 // }
 
+function showUniqueEvent (req,res) {
+  console.log("req.params: ", req.params)
+  axios.get(`${baseUrl}/events.json?id=${req.params.eventId}${apiKey}`)
+  .then(eventData => {
+    console.log("eventData: ", eventData.data)
+    // res.json(eventData)
+  })
+}
+
 
 export { 
   getSearch,
   show,
-  // createComment,
+  showUniqueEvent,
 }
