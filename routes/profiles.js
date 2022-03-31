@@ -14,7 +14,7 @@ router.get('/:id', profilesCtrl.show)
 router.post('/:id/create', profilesCtrl.addToProfile)
 
 // route to send data individually as params
-router.post('/add/:profile/:name/:bio/', profilesCtrl.addFriend)
+router.post('/add/:profile', profilesCtrl.addFriend)
 router.delete("/delete/:profileId", profilesCtrl.deleteFriend)
 router.delete("/delete/genre/:genreId", profilesCtrl.deleteGenre)
 router.delete("/delete/artist/:artistId", profilesCtrl.deleteArtist)
