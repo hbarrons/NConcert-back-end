@@ -181,6 +181,7 @@ function addAttendingEvent (req,res) {
       attending: true,
     })
     profile.save()
+    res.status(201).json(profile)
     console.log(profile.events)
   })
   .catch(err => {
@@ -189,12 +190,11 @@ function addAttendingEvent (req,res) {
 }
 
 function deleteEvent (req,res) {
-  console.log(req.params.eventId)
   Profile.findById(req.user.profile)
   .then(profile => {
     profile.events.remove({_id: req.params.eventId})
     profile.save()
-    console.log(profile.events)
+    res.status(201).json(profile)
   })
   .catch(err => {
     console.log(err)
