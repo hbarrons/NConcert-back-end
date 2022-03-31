@@ -35,7 +35,6 @@ function addToProfile(req,res) {
 }
 
 function addFriend(req,res) {
-  console.log(req.body)
   Profile.findById(req.user.profile)
   .then(profile => {
     profile.friends.push({
@@ -54,9 +53,13 @@ function addFriend(req,res) {
 function deleteFriend(req,res) {
   Profile.findById(req.user.profile)
   .then(profile => {
-    profile.friends.remove({_id: req.params.profileId})
+    for (let i=0; i < profile.friends.length; i++) {
+      if (profile.friends[i].profileId === req.params.profileId) {
+        profile.friends.splice(i,1)
+      }
+    }
     profile.save()
-    console.log(profile.friends)
+    res.status(201).json(profile)
   })
   .catch(err => {
     console.log(err)
