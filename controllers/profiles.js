@@ -35,7 +35,6 @@ function addToProfile(req,res) {
 }
 
 function addFriend(req,res) {
-  console.log(req.body)
   Profile.findById(req.user.profile)
   .then(profile => {
     profile.friends.push({
@@ -44,7 +43,7 @@ function addFriend(req,res) {
     })
     profile.save()
     console.log(profile.friends[profile.friends.length - 1])
-    res.status(201).json(profile.friends[profile.friends.length - 1])
+    res.status(201).json(profile)
   })
   .catch(err => {
     console.log(err)
@@ -54,9 +53,13 @@ function addFriend(req,res) {
 function deleteFriend(req,res) {
   Profile.findById(req.user.profile)
   .then(profile => {
-    profile.friends.remove({_id: req.params.profileId})
+    for (let i=0; i < profile.friends.length; i++) {
+      if (profile.friends[i].profileId === req.params.profileId) {
+        profile.friends.splice(i,1)
+      }
+    }
     profile.save()
-    console.log(profile.friends)
+    res.status(201).json(profile)
   })
   .catch(err => {
     console.log(err)
@@ -66,10 +69,12 @@ function deleteFriend(req,res) {
 function deleteGenre(req,res) {
   Profile.findById(req.user.profile)
   .then(profile => {
+    console.log(profile)
     profile.genre.remove({_id: req.params.genreId})
     profile.save()
-    console.log(profile.genre)
-    res.status(201).json(profile.genre)
+    console.log("line 74", profile)
+    res.status(201).json(profile)
+    console.log("after")
   })
   .catch(err => {
     console.log(err)
@@ -81,6 +86,7 @@ function deleteArtist(req,res) {
   .then(profile => {
     profile.artist.remove({_id: req.params.artistId})
     profile.save()
+    res.status(201).json(profile)
   })
   .catch(err => {
     console.log(err)
@@ -181,6 +187,7 @@ function addAttendingEvent (req,res) {
       attending: true,
     })
     profile.save()
+    res.status(201).json(profile)
     console.log(profile.events)
   })
   .catch(err => {
@@ -189,12 +196,11 @@ function addAttendingEvent (req,res) {
 }
 
 function deleteEvent (req,res) {
-  console.log(req.params.eventId)
   Profile.findById(req.user.profile)
   .then(profile => {
     profile.events.remove({_id: req.params.eventId})
     profile.save()
-    console.log(profile.events)
+    res.status(201).json(profile)
   })
   .catch(err => {
     console.log(err)
