@@ -26,7 +26,5 @@ router.post('/:event/create/interested', profilesCtrl.addInterestedEvent)
 router.post('/:event/create/attending', profilesCtrl.addAttendingEvent)
 router.delete('/delete/event/:eventId', profilesCtrl.deleteEvent)
 
-//route to send data as an object
-// router.post('/add/:profile', profilesCtrl.addFriend)
 
 export { router }
