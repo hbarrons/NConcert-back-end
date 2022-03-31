@@ -38,12 +38,12 @@ function addFriend(req,res) {
   console.log(req.body)
   Profile.findById(req.user.profile)
   .then(profile => {
-    console.log(profile)
     profile.friends.push({
       name: req.body.name,
       profileId: req.params.profile,
     })
     profile.save()
+    console.log(profile.friends[profile.friends.length - 1])
     res.status(201).json(profile.friends[profile.friends.length - 1])
   })
   .catch(err => {
@@ -68,6 +68,8 @@ function deleteGenre(req,res) {
   .then(profile => {
     profile.genre.remove({_id: req.params.genreId})
     profile.save()
+    console.log(profile.genre)
+    res.status(201).json(profile.genre)
   })
   .catch(err => {
     console.log(err)
@@ -87,6 +89,8 @@ function deleteArtist(req,res) {
 
 function addGenre (req,res) {
   Profile.findById(req.user.profile)
+  .populate("genre")
+  .populate("artist")
   .then(profile => {
     profile.genre.push({genre: req.params.genre})
     profile.save()
