@@ -39,7 +39,6 @@ const profileSchema = new mongoose.Schema({
   email: {type: String, required: true, lowercase: true, unique: true},
   bio: {
     type: String,
-    maxLength: 160
   },
   spotify: { type: String },
   genre: [genreSchema],
